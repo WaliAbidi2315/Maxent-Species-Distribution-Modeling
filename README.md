@@ -8,6 +8,10 @@
   <img src="https://img.shields.io/badge/ggplot2-Visualisation-E69F00?style=for-the-badge" alt="ggplot2">
 </p>
 
+<p align="center">
+  <a href="https://waliabidi2315.github.io/Maxent-Species-Distribution-Modeling/">Portfolio website</a> · <a href="reports/Wali_Abidi_M2024BSASS032_Shorea_Robusta.pdf">Full PDF report</a> · <a href="analysis/shorea_robusta_workflow.R">R analysis workflow</a>
+</p>
+
 A species-distribution modelling project for **Sal (*Shorea robusta*)**, using occurrence records and environmental predictors to map relative habitat suitability across a seven-state study area in India.
 
 ## Project overview
