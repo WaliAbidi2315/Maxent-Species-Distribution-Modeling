@@ -1,0 +1,23 @@
+Variable,Description,Unit,Source,Resolution,Processing
+bio1,Annual mean temperature,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio2,Mean diurnal range (mean of monthly max - min temperature),°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio3,Isothermality (bio2 / bio7 x 100),%,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio4,Temperature seasonality (standard deviation x 100),°C x 100,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio5,Max temperature of warmest month,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio6,Min temperature of coldest month,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio7,Temperature annual range (bio5 - bio6),°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio8,Mean temperature of wettest quarter,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio9,Mean temperature of driest quarter,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio10,Mean temperature of warmest quarter,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio11,Mean temperature of coldest quarter,°C,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio12,Annual precipitation,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio13,Precipitation of wettest month,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio14,Precipitation of driest month,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio15,Precipitation seasonality (coefficient of variation),%,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio16,Precipitation of wettest quarter,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio17,Precipitation of driest quarter,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio18,Precipitation of warmest quarter,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+bio19,Precipitation of coldest quarter,mm,"WorldClim v2.1 (Fick & Hijmans, 2017)",30 arc-seconds (~1 km) after resampling,Clipped to study area
+elev,Elevation above sea level,m,"SRTM (Farr et al., 2007)",30 arc-seconds (~1 km) after resampling,Clipped; bilinear resampling to WorldClim grid
+slope,"Terrain slope, derived from the elevation layer",degrees,Derived from SRTM,30 arc-seconds (~1 km) after resampling,Calculated with terra::terrain; on WorldClim grid
+ndvi,"Mean NDVI composite, 2023 (cloud-masked Sentinel-2)",unitless (-1 to 1),Sentinel-2 SR Harmonized via Google Earth Engine,30 arc-seconds (~1 km) after resampling,Exported from GEE on 30 arc-second grid; clipped; bilinear resampling
