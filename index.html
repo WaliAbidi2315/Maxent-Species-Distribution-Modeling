@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Species distribution modelling of Shorea robusta across seven states of central and eastern India using MaxEnt, climate, terrain and vegetation predictors.">
+  <meta name="theme-color" content="#14291f">
+  <title>Sal Habitat | Shorea robusta Species Distribution Model</title>
+  <style>
+    :root{--ink:#17251e;--muted:#65736b;--forest:#183b2b;--forest2:#28583d;--leaf:#8eaa75;--cream:#f5f4ed;--paper:#fffefa;--line:#e4e7dd;--gold:#c9a66b;--shadow:0 18px 50px rgba(22,43,31,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}img{display:block;max-width:100%}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+    .top{position:absolute;inset:0 0 auto;z-index:2;color:#f5f4ed}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff2b}.brand{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.navlinks{display:flex;gap:26px;font-size:13px}.navlinks a{text-decoration:none;color:#e2e9df}.navlinks a:hover{color:#fff}
+    .hero{position:relative;min-height:690px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(12,34,24,.96) 0%,rgba(17,48,32,.88) 48%,rgba(17,48,32,.45) 100%),url('plots/Shorea_robusta.png') center/cover no-repeat;color:#fff}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:130px;background:linear-gradient(transparent,var(--cream))}.hero-content{position:relative;z-index:1;padding:145px 0 130px;max-width:760px}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:#c8d8c1;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.eyebrow:before{content:"";width:34px;height:1px;background:var(--gold)}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,7.4vw,88px);line-height:.98;letter-spacing:-.045em;font-weight:500;margin:25px 0 22px}.latin{font-style:italic;color:#c5d5b8}.hero p{font-size:18px;line-height:1.7;color:#d9e2d8;max-width:660px;margin:0}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 19px;border-radius:3px;text-decoration:none;font-size:13px;font-weight:750;transition:.2s}.btn-light{background:#f5f4ed;color:var(--forest)}.btn-outline{border:1px solid #ffffff7a;color:white}.btn:hover{transform:translateY(-2px)}
+    .metrics{position:relative;z-index:3;margin-top:-48px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line)}.metric{padding:26px 28px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;font:500 35px/1.1 Georgia,serif;color:var(--forest)}.metric span{display:block;margin-top:9px;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}
+    section{padding:100px 0}.section-kicker{color:var(--forest2);font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}.section-title{font:500 clamp(34px,4vw,52px)/1.1 Georgia,serif;letter-spacing:-.035em;margin:14px 0 18px}.lead{max-width:700px;color:var(--muted);font-size:17px}.intro-grid{display:grid;grid-template-columns:1fr .85fr;gap:80px;align-items:center}
+    .note{padding:28px 30px;background:#e9eee4;border-left:3px solid var(--leaf)}.note strong{display:block;color:var(--forest);font:500 22px Georgia,serif;margin-bottom:8px}.note p{margin:0;color:#59685e;font-size:14px}
+    .visual-section{background:#e9ece4}.visual-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.visual-head p{max-width:430px;color:var(--muted);font-size:14px}.visual{background:var(--paper);padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}.visual img{width:100%;max-height:620px;object-fit:contain;background:#f8f8f3}.caption{padding:15px 8px 5px;color:var(--muted);font-size:12px}
+    .findings{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}.bars{margin-top:28px}.bar-row{margin:22px 0}.bar-label{display:flex;justify-content:space-between;gap:15px;font-size:13px;font-weight:750;margin-bottom:8px}.bar-track{height:9px;background:#e8ebe3;border-radius:20px;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,var(--forest2),#91a979);border-radius:20px}
+    .state-table{width:100%;border-collapse:collapse;margin-top:24px;background:var(--paper);font-size:13px}.state-table th{text-align:left;color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:13px 12px;border-bottom:1px solid var(--line)}.state-table td{padding:13px 12px;border-bottom:1px solid var(--line)}.state-table tr:last-child td{border:0;font-weight:800;color:var(--forest)}
+    .method{background:var(--forest);color:#f5f4ed}.method .section-kicker{color:#b7cba9}.method .section-title{color:#fff}.method .lead{color:#c8d4c8}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:44px;background:#ffffff2a;border:1px solid #ffffff2a}.step{background:var(--forest);padding:25px 22px;min-height:190px}.step b{display:block;color:#b9caab;font:500 27px Georgia,serif}.step h3{font:500 19px Georgia,serif;margin:20px 0 8px}.step p{color:#c6d1c5;font-size:13px;margin:0}
+    .predictors{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:34px}.predictor{padding:23px;background:#234a35;border:1px solid #52705b}.predictor small{color:#b8c9af;text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:800}.predictor h3{font:500 20px Georgia,serif;margin:9px 0}.predictor p{color:#cbd6ca;font-size:12px;margin:0}
+    .caveats{display:grid;grid-template-columns:.7fr 1fr;gap:70px}.caveat-list{display:grid;gap:13px}.caveat{padding:18px 20px;background:var(--paper);border:1px solid var(--line);font-size:14px;color:#58675d}.caveat strong{color:var(--ink)}
+    .resources{background:#e9ece4}.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:35px}.resource{display:flex;flex-direction:column;justify-content:space-between;min-height:185px;padding:24px;background:var(--paper);border:1px solid var(--line);text-decoration:none;transition:.2s}.resource:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.resource small{color:var(--forest2);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:10px}.resource h3{font:500 22px Georgia,serif;margin:22px 0 10px}.resource span{font-size:12px;color:var(--muted)}
+    footer{background:#12271c;color:#c5d0c3;padding:30px 0;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot a{color:#e6eee2}
+    @media(max-width:800px){.navlinks{gap:13px}.navlinks a:nth-child(2){display:none}.hero{min-height:650px}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.intro-grid,.findings,.caveats{grid-template-columns:1fr;gap:35px}.steps{grid-template-columns:repeat(2,1fr)}.predictors{grid-template-columns:1fr}.resource-grid{grid-template-columns:1fr}.visual-head{display:block}}
+    @media(max-width:480px){.wrap{width:min(100% - 30px,1160px)}.nav{height:70px}.brand{font-size:11px}.navlinks{font-size:11px}.hero-content{padding:125px 0 115px}.hero p{font-size:16px}.metric{padding:20px 16px}.metric strong{font-size:29px}section{padding:72px 0}.steps{grid-template-columns:1fr}.step{min-height:auto}.state-table{font-size:11px}.state-table th,.state-table td{padding:10px 7px}}
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="top"><div class="wrap nav"><div class="brand">Field notes · Species modelling</div><nav class="navlinks" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#findings">Findings</a><a href="#method">Method</a><a href="#resources">Resources</a></nav></div></div>
+    <div class="wrap hero-content">
+      <div class="eyebrow">Ecological modelling · Central &amp; Eastern India</div>
+      <h1>Mapping the habitat<br>of <span class="latin">Sal</span>.</h1>
+      <p>A MaxEnt species distribution model for <em>Shorea robusta</em>, exploring how climate, terrain and vegetation relate to predicted habitat suitability across seven Indian states.</p>
+      <div class="hero-actions"><a class="btn btn-light" href="#findings">Explore the findings <span aria-hidden="true">↘</span></a><a class="btn btn-outline" href="reports/Wali_Abidi_M2024BSASS032_Shorea_Robusta.pdf" target="_blank" rel="noopener">Read the research report ↗</a></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap metrics" aria-label="Project summary statistics">
+      <div class="metric"><strong>3,204</strong><span>Raw occurrence records</span></div>
+      <div class="metric"><strong>2,392</strong><span>Thinned model records</span></div>
+      <div class="metric"><strong>22</strong><span>Environmental predictors</span></div>
+      <div class="metric"><strong>0.851</strong><span>Reported test AUC</span></div>
+    </div>
+
+    <section id="overview">
+      <div class="wrap intro-grid">
+        <div><div class="section-kicker">01 / Project overview</div><h2 class="section-title">Understanding where Sal finds suitable conditions.</h2><p class="lead">Sal (<em>Shorea robusta</em>) is an ecologically and economically important forest tree across South Asia. This project uses presence records and environmental data to estimate relative habitat suitability within a defined seven-state study area.</p><p class="lead">The analysis combines species occurrences with bioclimatic, topographic and vegetation layers, then uses MaxEnt to model environmental associations and map predicted suitability.</p></div>
+        <aside class="note"><strong>A regional model, not a range-wide map.</strong><p>The study area comprises Uttar Pradesh, Bihar, Jharkhand, Odisha, Chhattisgarh, West Bengal and Madhya Pradesh. Sal also occurs beyond these boundaries; excluded regions are outside the scope of this model.</p></aside>
+      </div>
+    </section>
+
+    <section class="visual-section">
+      <div class="wrap">
+        <div class="visual-head"><div><div class="section-kicker">02 / Spatial output</div><h2 class="section-title">Predicted habitat suitability</h2></div><p>The MaxEnt output uses the cloglog scale. Warmer colours in the model visualisation indicate higher predicted suitability; the surface represents relative suitability, not confirmed species occupancy.</p></div>
+        <figure class="visual"><img src="figures/fig_suitability_map.png" alt="Continuous habitat suitability map for Shorea robusta across the seven-state study area" loading="lazy"><figcaption class="caption">Continuous suitability map · cloglog output · study-area boundary overlaid.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="findings">
+      <div class="wrap findings">
+        <div><div class="section-kicker">03 / Model findings</div><h2 class="section-title">Terrain and vegetation lead the model.</h2><p class="lead">Slope and NDVI together account for 59.2% of the model's reported percent contribution. Temperature range and dry-quarter rainfall add further explanatory contribution.</p>
+          <div class="bars" aria-label="MaxEnt percent contribution by predictor">
+            <div class="bar-row"><div class="bar-label"><span>Slope</span><span>39.0%</span></div><div class="bar-track"><div class="bar-fill" style="width:39%"></div></div></div>
+            <div class="bar-row"><div class="bar-label"><span>NDVI</span><span>20.2%</span></div><div class="bar-track"><div class="bar-fill" style="width:20.2%"></div></div></div>
+            <div class="bar-row"><div class="bar-label"><span>BIO2 · Mean diurnal range</span><span>12.3%</span></div><div class="bar-track"><div class="bar-fill" style="width:12.3%"></div></div></div>
+            <div class="bar-row"><div class="bar-label"><span>BIO17 · Precipitation of driest quarter</span><span>10.1%</span></div><div class="bar-track"><div class="bar-fill" style="width:10.1%"></div></div></div>
+          </div>
+        </div>
+        <div><div class="section-kicker">Thresholded estimate</div><h2 class="section-title">219,206 km²</h2><p class="lead">The report estimates this area as suitable at the 10-percentile training-presence threshold (cloglog 0.332).</p>
+          <table class="state-table"><thead><tr><th>State</th><th>Suitable area</th><th>State share</th></tr></thead><tbody>
+            <tr><td>Odisha</td><td>74,754 km²</td><td>48.0%</td></tr>
+            <tr><td>Jharkhand</td><td>49,452 km²</td><td>61.8%</td></tr>
+            <tr><td>Chhattisgarh</td><td>37,581 km²</td><td>27.8%</td></tr>
+            <tr><td>Madhya Pradesh</td><td>20,896 km²</td><td>6.8%</td></tr>
+            <tr><td>West Bengal</td><td>19,980 km²</td><td>23.4%</td></tr>
+            <tr><td>Uttar Pradesh</td><td>8,722 km²</td><td>3.6%</td></tr>
+            <tr><td>Bihar</td><td>7,821 km²</td><td>8.3%</td></tr>
+          </tbody></table>
+          <p class="caption">Areas are model-derived estimates at the selected threshold, not ground-truthed habitat inventories.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-section">
+      <div class="wrap">
+        <div class="visual-head"><div><div class="section-kicker">04 / Binary classification</div><h2 class="section-title">A thresholded view of the landscape</h2></div><p>The binary map classifies cells at or above the 0.332 cloglog threshold as suitable. The continuous surface remains the more informative representation of model output.</p></div>
+        <figure class="visual"><img src="figures/fig_suitability_binary.png" alt="Binary suitable and unsuitable habitat map using cloglog threshold 0.332" loading="lazy"><figcaption class="caption">Binary suitability map · 10-percentile training-presence threshold = 0.332.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="method" id="method">
+      <div class="wrap">
+        <div class="section-kicker">05 / Modelling workflow</div><h2 class="section-title">From occurrence records to spatial prediction.</h2><p class="lead">The workflow was assembled in R, with spatial preparation using terra, geodata and sf, and the species distribution model run in MaxEnt 3.4.4.</p>
+        <div class="steps">
+          <article class="step"><b>01</b><h3>Occurrence preparation</h3><p>Clean 3,204 records, remove duplicate coordinates, restrict to the seven states and thin to one record per 1 km cell.</p></article>
+          <article class="step"><b>02</b><h3>Environmental layers</h3><p>Prepare 19 WorldClim bioclimatic variables, SRTM elevation, derived slope and 2023 Sentinel-2 NDVI.</p></article>
+          <article class="step"><b>03</b><h3>MaxEnt modelling</h3><p>Use 1,794 training presences, 598 test presences and approximately 10,000 background points.</p></article>
+          <article class="step"><b>04</b><h3>Evaluation &amp; mapping</h3><p>Review AUC, omission, response curves and jackknife diagnostics; map continuous and thresholded suitability.</p></article>
+        </div>
+        <div class="predictors">
+          <article class="predictor"><small>Climate</small><h3>WorldClim v2.1</h3><p>19 bioclimatic variables at 30 arc-seconds, representing 1970–2000 climate normals.</p></article>
+          <article class="predictor"><small>Topography</small><h3>SRTM elevation &amp; slope</h3><p>Elevation from the Shuttle Radar Topography Mission; slope derived in R.</p></article>
+          <article class="predictor"><small>Vegetation</small><h3>Sentinel-2 NDVI</h3><p>Mean 2023 NDVI composite built from cloud-masked Sentinel-2 surface reflectance imagery.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap caveats">
+        <div><div class="section-kicker">06 / Interpretation</div><h2 class="section-title">What the model can—and cannot—say.</h2><p class="lead">The model is a decision-support layer for exploring environmental associations. It should not be read as a census of Sal trees or as proof of presence at any location.</p></div>
+        <div class="caveat-list">
+          <div class="caveat"><strong>Correlated predictors.</strong> The report found 19 predictor pairs with absolute correlation above 0.7. All 19 bioclimatic variables were retained, so individual contribution scores should be interpreted cautiously.</div>
+          <div class="caveat"><strong>Sampling bias.</strong> Occurrence records may reflect uneven survey effort. Spatial thinning reduces clustering but does not remove all sampling bias.</div>
+          <div class="caveat"><strong>Threshold dependence.</strong> The 219,206 km² estimate depends on the selected 0.332 threshold. A continuous suitability surface avoids reducing the model to one cut-off.</div>
+          <div class="caveat"><strong>Geographic scope.</strong> Results describe the seven-state study area only; they do not represent the complete distribution of <em>Shorea robusta</em>.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources" id="resources">
+      <div class="wrap"><div class="section-kicker">07 / Project materials</div><h2 class="section-title">Explore the research and code.</h2><p class="lead">Project files are organised in the repository for review and reuse.</p>
+        <div class="resource-grid">
+          <a class="resource" href="reports/Wali_Abidi_M2024BSASS032_Shorea_Robusta.pdf" target="_blank" rel="noopener"><small>Research report · PDF</small><h3>Read the full report</h3><span>Methods, maps, results and discussion ↗</span></a>
+          <a class="resource" href="analysis/shorea_robusta_workflow.R" target="_blank" rel="noopener"><small>Reproducibility · R</small><h3>View the R workflow</h3><span>Data preparation and spatial analysis ↗</span></a>
+          <a class="resource" href="data/Shorea_Robusta.csv" target="_blank" rel="noopener"><small>Source data · CSV</small><h3>Explore occurrence records</h3><span>Supplied species occurrence dataset ↗</span></a>
+          <a class="resource" href="plots/Shorea_robusta.png" target="_blank" rel="noopener"><small>MaxEnt output</small><h3>View model visualisation</h3><span>MaxEnt prediction and presence points ↗</span></a>
+          <a class="resource" href="plots/Shorea_robusta_roc.png" target="_blank" rel="noopener"><small>Evaluation</small><h3>ROC curve</h3><span>Training and test discrimination diagnostic ↗</span></a>
+          <a class="resource" href="plots/Shorea_robusta_jacknife_test.png" target="_blank" rel="noopener"><small>Variable importance</small><h3>Jackknife test</h3><span>Model gain with variables included or omitted ↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap foot"><span>Shorea robusta · Species Distribution Modelling</span><span>Project by Wali Abidi · <a href="https://github.com/WaliAbidi2315/Maxent-Species-Distribution-Modeling">GitHub repository ↗</a></span></div></footer>
+</body>
+</html>
